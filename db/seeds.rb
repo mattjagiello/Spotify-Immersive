@@ -1,5 +1,4 @@
-require 'rspotify'
-require 'ap'
+#require 'rspotify'
 
 #RSpotify.authenticate("a09377aa120c4a68ba377892982cb5cf", "c3a52e31188c43b6930c737fbe8a3026")
 # recommendations = RSpotify::Recommendations.generate(limit: 1, seed_genres: ['chill', 'focus'])
