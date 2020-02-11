@@ -30,11 +30,12 @@ end
     #uid = user.id
 
 #View Playlists
-    def view_playlists(userid)
-        selectedplaylist = Playlist.where(user_id: userid)
-        if selectedplaylist.empty?
+    def view_playlists
+        userplaylists = Playlist.where(user_id: @uid)
+        if userplaylists.empty?
             print "No playlists found."
-        else selectedplaylist.map.with_index(1) do |playlist, id|
+        else plnames = userplaylists.collect {|x| x.name} 
+            plnames.map.with_index(1) do |playlist, id|
             puts "#{id} - #{playlist}"
             end
         end
