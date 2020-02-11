@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
 end
 
 #TTY prompt to get argument, return user if found or create user if not found
-#Need to add password functionality
+#Need to add password functionality via run console
     def find_or_create_user(username, password = nil)
         userlist = User.all.collect {|x| x.name}
         if userlist.include?(username)
@@ -25,9 +25,6 @@ end
             p "Welcome, #{uname}!"
         end
     end
-
-#Store user information as variables
-    #uid = user.id
 
 #View Playlists
     def view_playlists
