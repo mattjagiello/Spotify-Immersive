@@ -11,12 +11,21 @@ class Playlist < ActiveRecord::Base
             end
         end
 
-        uri_found = track_found[0].album.artists[0].uri
+
+        #finds artist page
+        #uri_found = track_found[0].album.artists[0].uri
 
         s = Song.create(title: title, uri: uri_found)
         a = Artist.create(name: title)
         SongsArtists.create(song: s, artist: a)
         PlaylistsSongs.create(playlist: self, song: s)
     end
+
+    def play_song(selection_number)
+        key_id = self.id
+        
+        system("spotify play #{title}")
+    end
+
 
 end
