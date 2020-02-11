@@ -5,13 +5,22 @@ end
 
 #TTY prompt to get argument, return user if found or create user if not found
 #Need to add password functionality
-    def find_or_create_user(username)
+    def find_or_create_user(username, password = nil)
         userlist = User.all.collect {|x| x.name}
         if userlist.include?(username)
-            uname = userlist.select{|x| x == username}
-            p "Welcome back, #{uname[0]}!"
+            uobject = User.all.select{|x| x.name == username}
+                if uobject[0].password != password
+                    p "Wrong password, try again! :("
+                    #username = gets.chomp
+                    #password = gets.chomp
+                    #find_or_create_user(username, password)
+                    return 0
+                end
+            @uid = uobject[0].id
+            uname = uobject[0].name
+            p "Welcome back, #{uname}!"
         else
-            User.create(name: username)
+            User.create(name: username, password: password)
             uname = User.last.name
             p "Welcome, #{uname}!"
         end
@@ -31,10 +40,9 @@ end
         end
     end
     
-#Generate Playlist - TTY prompt for name - how to get User ID?
+#Generate Playlist - TTY prompt for name
     def generate_playlist(name)
-        Playlist.create(name: name)
-        #Playlist.last.user_id = 
+        Playlist.create(name: name, user_id: @uid)
     end
 
 #Generate Playlist by Genre - TTY prompt for genre - NEED TO GET ARTISTS IN NESTED ARRAY
