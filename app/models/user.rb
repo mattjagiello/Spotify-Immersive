@@ -10,7 +10,7 @@ end
         if userlist.include?(username)
             uobject = User.all.select{|x| x.name == username}
                 if uobject[0].password != password
-                    p "Wrong password, try again! :("
+                    p "Wrong password, re-run program! :("
                     #username = gets.chomp
                     #password = gets.chomp
                     #find_or_create_user(username, password)
@@ -44,14 +44,26 @@ end
     end
 
 #Generate Playlist by Genre - TTY prompt for genre - NEED TO GET ARTISTS IN NESTED ARRAY
-    # def generate_playlist_by_genre(genre)
-    #     RSpotify.authenticate("a09377aa120c4a68ba377892982cb5cf", "c3a52e31188c43b6930c737fbe8a3026")
-    #     recommendations = RSpotify::Recommendations.generate(limit: 1, seed_genres: ["blues"])
-    #     rec_songs = recommendations.tracks.collect {|x| x.name}
-    #     rec_songs.map.with_index(1) do |playlist, id|
-    #         puts "#{id} - #{playlist}"
-    #     end
-    # end
+    def generate_playlist_by_genre(name, genre)
+        RSpotify.authenticate("a09377aa120c4a68ba377892982cb5cf", "c3a52e31188c43b6930c737fbe8a3026")
+        generate_playlist(name)
+        lastpl = Playlist.last
+        lastpl.user_id = @uid
+        10.times do
+            rec = RSpotify::Recommendations.generate(limit: 1, seed_genres: [genre])
+            rec_songs = rec.tracks
+            rec_aa = rec_songs.collect{|x| x.album.artists}
+            p rec_aa = rec_aa[0].collect{|x| x.name}
+            a = Artist.create(name: rec_aa[0])
+            p rec_song = rec.tracks.collect{|x| x.name}
+            s = Song.create(title: rec_song[0])
+            SongsArtists.create(song: s, artist: a)
+            PlaylistsSongs.create(playlist: lastpl, song: s)
+        end
+        #rec_song.map.with_index(1) do |playlist, id|
+        #    puts "#{id} - #{playlist}"
+        #end
+    end
 
 #Remove Playlist
     def remove_playlist(name)
