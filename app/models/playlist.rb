@@ -58,7 +58,6 @@ class Playlist < ActiveRecord::Base
                 song = row[:songs]
             end
         end
-                                # binding.pry
 
         artist = nil
         self.display_playlist.each do |row|
@@ -75,15 +74,40 @@ class Playlist < ActiveRecord::Base
         end
         #can also accomplish by array index no.-1
 
+    end
 
-        # playlist.find
+    def rename_playlist(name)
+        self.update(name: name)
+    end
 
-    #     song = playlist.(selection_number-1).
+    
+    def delete_song(selection_number)
 
-    #     if playlist.include?(selection_number)
-    #         title = 
-    #         system("spotify play #{title}")
-    #     end
+
+        
+
+
+        # Songs.all.each do |s|
+        #     PlaylistsSongs.all.each do |ps|
+        #         if ps.playlist == self 
+                    
+        #         end
+        #     end
+        # end
+
+        song = nil
+        self.display_playlist.each do |row|
+            if row[:track_no] == selection_number
+                song = row[:songs]
+            end
+        end
+
+
+        PlaylistsSongs.all.each do |pls|
+            if pls.song.title == song && pls.playlist == self
+                pls.destroy
+            end
+        end
     end
 
 
