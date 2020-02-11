@@ -27,10 +27,13 @@ class Playlist < ActiveRecord::Base
                 row.song_id
             end
         end
-
-       song_artist_array = SongsArtists.all.select do |sa_row|
-            songids.select do |si_row|
-                sa_row.song_id == si_row
+        
+        song_artist_array = []
+       SongsArtists.all.map do |sa_row|
+            songids.each do |si_row|
+                if sa_row.song_id == si_row
+                    song_artist_array << sa_row
+                end
             end
         end
 
@@ -106,6 +109,7 @@ class Playlist < ActiveRecord::Base
         PlaylistsSongs.all.each do |pls|
             if pls.song.title == song && pls.playlist == self
                 pls.destroy
+                binding.pry
             end
         end
     end
