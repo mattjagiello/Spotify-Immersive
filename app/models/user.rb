@@ -4,15 +4,18 @@ class User < ActiveRecord::Base
 end
 
 #TTY prompt to get argument, return user if found or create user if not found
-    # def find_or_create_user(username)
-    #     userlist = User.all.collect {|x| x.name}
-    #       if user.include?(username)
-    #         uname = User.all.find{|x| x.name == username}
-    #       else
-    #         User.create(name: username)
-    #         uname = User.last.name
-    #     end
-    # end
+#Need to add password functionality
+    def find_or_create_user(username)
+        userlist = User.all.collect {|x| x.name}
+        if userlist.include?(username)
+            uname = userlist.select{|x| x == username}
+            p "Welcome back, #{uname[0]}!"
+        else
+            User.create(name: username)
+            uname = User.last.name
+            p "Welcome, #{uname}!"
+        end
+    end
 
 #Store user information as variables
     #uid = user.id
@@ -34,10 +37,24 @@ end
         #Playlist.last.user_id = 
     end
 
-#Generate Playlist by Genre - TTY prompt for genre
-    def generate_playlist_by_genre
-    end
+#Generate Playlist by Genre - TTY prompt for genre - NEED TO GET ARTISTS IN NESTED ARRAY
+    # def generate_playlist_by_genre(genre)
+    #     RSpotify.authenticate("a09377aa120c4a68ba377892982cb5cf", "c3a52e31188c43b6930c737fbe8a3026")
+    #     recommendations = RSpotify::Recommendations.generate(limit: 1, seed_genres: ["blues"])
+    #     rec_songs = recommendations.tracks.collect {|x| x.name}
+    #     rec_songs.map.with_index(1) do |playlist, id|
+    #         puts "#{id} - #{playlist}"
+    #     end
+    # end
 
+#Remove Playlist
+    def remove_playlist(name)
+        if Playlist.where(name: name) == []
+            p "No matching playlist."
+        else
+            Playlist.where(name: name).destroy_all
+        end
+    end
 
 
 
