@@ -14,22 +14,31 @@ end
     #     end
     # end
 
+#Store user information as variables
+    #uid = user.id
+
 #View Playlists
     def view_playlists(userid)
-        selectedplaylist = Playlist.all.select{|x| x.user_id == userid}
+        selectedplaylist = Playlist.where(user_id: userid)
         if selectedplaylist.empty?
             print "No playlists found."
-        else selectedplaylist.map.with_index do |playlist, id|
+        else selectedplaylist.map.with_index(1) do |playlist, id|
             puts "#{id} - #{playlist}"
             end
         end
     end
     
+#Generate Playlist - TTY prompt for name - how to get User ID?
+    def generate_playlist(name)
+        Playlist.create(name: name)
+        #Playlist.last.user_id = 
+    end
 
-#Login to user
+#Generate Playlist by Genre - TTY prompt for genre
+    def generate_playlist_by_genre
+    end
 
-#Store user information as variables
-    #current_user = user.id
+
 
 
 
