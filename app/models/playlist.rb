@@ -36,23 +36,55 @@ class Playlist < ActiveRecord::Base
 
         table_data = []
 
+        index = 0
+
         song_artist_array.each do |sa_row|
-            table_data << {songs: sa_row.song.title, artists: sa_row.artist.name}
+            table_data << {songs: sa_row.song.title, artists: sa_row.artist.name, track_no: index+=1 }
         end
 
-        Formatador.display_table(table_data)
+        # Formatador.display_table(table_data)
+        table_data
 
     end
 
-    # def play_song(selection_number)
-    #     playlist = self.display_playlist
+    def display_playlist_as_table
+        Formatador.display_table(self.display_playlist)
+    end
+
+    def play_song(selection_number)
+        song = nil
+        self.display_playlist.each do |row|
+            if row[:track_no] == selection_number
+                song = row[:songs]
+            end
+        end
+                                # binding.pry
+
+        artist = nil
+        self.display_playlist.each do |row|
+            if row[:track_no] == selection_number
+                artist = row[:artists]
+            end
+        end
+
+
+        if artist == nil || song == nil
+            return "Song is not in #{self.name} playlist"
+        else
+            system("spotify play #{song} #{artist}")
+        end
+        #can also accomplish by array index no.-1
+
+
+        # playlist.find
+
     #     song = playlist.(selection_number-1).
 
     #     if playlist.include?(selection_number)
     #         title = 
     #         system("spotify play #{title}")
     #     end
-    # end
+    end
 
 
 end
