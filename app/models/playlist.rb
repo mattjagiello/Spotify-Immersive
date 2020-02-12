@@ -109,7 +109,6 @@ class Playlist < ActiveRecord::Base
         PlaylistsSongs.all.each do |pls|
             if pls.song.title == song && pls.playlist == self
                 pls.destroy
-                binding.pry
             end
         end
     end

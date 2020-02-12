@@ -1,11 +1,11 @@
 class User < ActiveRecord::Base
     has_many :playlists
     has_many :songs, through: :playlists
-end
+
 
 #TTY prompt to get argument, return user if found or create user if not found
 #Need to add password functionality via run console
-    def find_or_create_user(username, password = nil)
+    def self.find_or_create_user(username, password = nil)
         userlist = User.all.collect {|x| x.name}
         if userlist.include?(username)
             uobject = User.all.select{|x| x.name == username}
@@ -27,7 +27,7 @@ end
     end
 
 #View Playlists
-    def view_playlists
+    def self.view_playlists
         userplaylists = Playlist.where(user_id: @uid)
         if userplaylists.empty?
             print "No playlists found."
@@ -39,12 +39,12 @@ end
     end
     
 #Generate Playlist - TTY prompt for name
-    def generate_playlist(name)
+    def self.generate_playlist(name)
         Playlist.create(name: name, user_id: @uid)
     end
 
 #Generate Playlist by Genre - TTY prompt for name, genre, number
-    def generate_playlist_by_genre(name, genre, number)
+    def self.generate_playlist_by_genre(name, genre, number)
         RSpotify.authenticate("a09377aa120c4a68ba377892982cb5cf", "c3a52e31188c43b6930c737fbe8a3026")
         generate_playlist(name)
         lastpl = Playlist.last
@@ -66,7 +66,7 @@ end
     end
 
 #Remove Playlist
-    def remove_playlist(name)
+    def self.remove_playlist(name)
         if Playlist.where(name: name) == []
             p "No matching playlist."
         else
@@ -74,6 +74,6 @@ end
         end
     end
 
-
+end
 
 
