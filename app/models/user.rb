@@ -50,7 +50,7 @@ end
     
         case selection
         when 1
-            self.view_playlists
+            self.view_playlists_as_table
         when 2
             self.playlist_pick
         when 3
@@ -76,17 +76,39 @@ end
     end
 
 #View Playlists
-    def view_playlists
-        userplaylists = Playlist.where(user_id: self.id)
-        if userplaylists.empty?
-            print "No playlists found. "
-            self.playlist_options
-        else plnames = userplaylists.collect {|x| x.name} 
-            plnames.map.with_index(1) do |playlist, id|
-            puts "#{id} - #{playlist}"
-            end
+def view_playlists
+    table_data = []
+    userplaylists = Playlist.where(user_id: self.id)
+    if userplaylists.empty?
+        print "No playlists found. "
+        self.playlist_options
+    else plnames = userplaylists.collect {|x| x.name} 
+        plnames.map.with_index(1) do |playlist, id|
+            table_data << {name: "#{playlist}", no: "#{id}"}
         end
     end
+    table_data
+end
+
+def choose_playlist(selection_number)
+    playlist = []
+    Playlist.all.each do |p|
+        if p.user == self
+            playlist << p
+        end
+    end
+    #\/ \/ \/ \/ \/ \/#not sure if this is very robust\/ \/ \/ \/ \/
+    #binding.pry
+    playlist[selection_number-1].display_playlist_as_table
+    playlist[selection_number-1].display_options
+end
+
+def view_playlists_as_table
+    Formatador.display_table(self.view_playlists)
+    prompt = TTY::Prompt.new
+    input = prompt.ask('Enter playlist number:')
+    self.choose_playlist(input.to_i)
+end
 
 #Generate Blank Playlist or By Genre
 def playlist_pick
@@ -164,5 +186,4 @@ end
             Playlist.where(name: name).destroy_all
         end
     end
-
 end
