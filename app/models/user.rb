@@ -43,13 +43,16 @@ end
         Playlist.create(name: name, user_id: @uid)
     end
 
-#Generate Playlist by Genre - TTY prompt for genre - NEED TO GET ARTISTS IN NESTED ARRAY
-    def generate_playlist_by_genre(name, genre)
+#Generate Playlist by Genre - TTY prompt for name, genre, number
+    def generate_playlist_by_genre(name, genre, number)
         RSpotify.authenticate("a09377aa120c4a68ba377892982cb5cf", "c3a52e31188c43b6930c737fbe8a3026")
         generate_playlist(name)
         lastpl = Playlist.last
         lastpl.user_id = @uid
-        10.times do
+        if number > 10
+            number = 10
+        end
+        number.times do
             rec = RSpotify::Recommendations.generate(limit: 1, seed_genres: [genre])
             rec_songs = rec.tracks
             rec_aa = rec_songs.collect{|x| x.album.artists}
@@ -60,9 +63,6 @@ end
             SongsArtists.create(song: s, artist: a)
             PlaylistsSongs.create(playlist: lastpl, song: s)
         end
-        #rec_song.map.with_index(1) do |playlist, id|
-        #    puts "#{id} - #{playlist}"
-        #end
     end
 
 #Remove Playlist
