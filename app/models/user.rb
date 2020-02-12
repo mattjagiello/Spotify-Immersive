@@ -46,20 +46,16 @@ end
             menu.choice name: 'Add New Playlist', value: 2
             menu.choice name: 'Delete A Playlist', value: 3
             menu.choice name: 'Logout', value: 4
-          end
+        end
     
         case selection
         when 1
             self.view_playlists
         when 2
-            plname = prompt.ask ('Enter a playlist name.') do |q|
-                q.required true
-            end
-            self.generate_playlist(plname)
-            p "Playlist #{plname} created!"
-            self.playlist_options
+            self.playlist_pick
         when 3
-            name = prompt.ask ("Enter a playlist name to delete or type 'Back' to go back.") do |q|
+            self.view_playlists
+            name = prompt.ask ("Enter a playlist name to delete.") do |q|
                 q.required true
                 if name == "Back"
                     self.playlist_options
@@ -67,7 +63,7 @@ end
             end
             all_plnames = Playlist.all.collect{|x| x.name}
             if all_plnames.exclude?(name)
-                puts "View playlists and try again." 
+                puts "No matching playlist name -- try again." 
             else
                 self.remove_playlist(name)
                 puts "Playlist #{name} deleted!"
@@ -91,6 +87,42 @@ end
             end
         end
     end
+
+#Generate Blank Playlist or By Genre
+def playlist_pick
+    prompt = TTY::Prompt.new
+    selection = prompt.select("Choose an option.") do |menu|
+        menu.choice name: 'Generate blank playlist.', value: 1
+        menu.choice name: 'Generate Spotify recommended playlist by genre.', value: 2
+        menu.choice name: 'Back', value: 3
+    end
+
+    case selection
+    when 1
+        plname = prompt.ask ("Enter a playlist name.") do |q|
+            q.required true
+        end
+        self.generate_playlist(plname)
+        p "Playlist #{plname} created!"
+        self.playlist_options
+    when 2
+        name = prompt.ask ("Enter a playlist name.") do |q|
+            q.required true
+        end
+        genre = prompt.ask ("Enter a genre.") do |q|
+            q.required true
+        end
+        plnumber = prompt.ask ("Enter number of songs to add to playlist (up to 10).") do |q|
+            q.required true
+        end
+        number = plnumber.to_i
+        self.generate_playlist_by_genre(name, genre, number)
+        puts "#{name} playlist created!"
+        self.playlist_options
+    when 3
+        self.playlist_options
+    end
+end
     
 #Generate Playlist - TTY prompt for name
     def generate_playlist(name)
@@ -98,7 +130,7 @@ end
     end
 
 #Generate Playlist by Genre - TTY prompt for name, genre, number
-    def self.generate_playlist_by_genre(name, genre, number)
+    def generate_playlist_by_genre(name, genre, number)
         RSpotify.authenticate("a09377aa120c4a68ba377892982cb5cf", "c3a52e31188c43b6930c737fbe8a3026")
         generate_playlist(name)
         lastpl = Playlist.last
@@ -109,13 +141,18 @@ end
         number.times do
             rec = RSpotify::Recommendations.generate(limit: 1, seed_genres: [genre])
             rec_songs = rec.tracks
-            rec_aa = rec_songs.collect{|x| x.album.artists}
-            p rec_aa = rec_aa[0].collect{|x| x.name}
-            a = Artist.create(name: rec_aa[0])
-            p rec_song = rec.tracks.collect{|x| x.name}
-            s = Song.create(title: rec_song[0])
-            SongsArtists.create(song: s, artist: a)
-            PlaylistsSongs.create(playlist: lastpl, song: s)
+            if rec_aa = rec_songs.collect{|x| x.album.artists} == []
+                puts "Genre not found - try another genre!"
+                self.playlist_pick
+            else
+                rec_aa = rec_songs.collect{|x| x.album.artists}
+                rec_aa = rec_aa[0].collect{|x| x.name}
+                a = Artist.create(name: rec_aa[0])
+                rec_song = rec.tracks.collect{|x| x.name}
+                s = Song.create(title: rec_song[0])
+                SongsArtists.create(song: s, artist: a)
+                PlaylistsSongs.create(playlist: lastpl, song: s)
+            end
         end
     end
 
