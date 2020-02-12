@@ -1,3 +1,5 @@
+require_relative 'user.rb'
+
 class Playlist < ActiveRecord::Base
     belongs_to :user
     has_and_belongs_to_many :songs
@@ -11,14 +13,12 @@ class Playlist < ActiveRecord::Base
             end
         end
 
-
-        #finds artist page
-        #uri_found = track_found[0].album.artists[0].uri
-
         s = Song.create(title: title)
         a = Artist.create(name: artist)
         SongsArtists.create(song: s, artist: a)
         PlaylistsSongs.create(playlist: self, song: s)
+
+        self.display_playlist_as_table
     end
 
     def display_playlist
@@ -47,11 +47,11 @@ class Playlist < ActiveRecord::Base
 
         # Formatador.display_table(table_data)
         table_data
-
     end
 
     def display_playlist_as_table
         Formatador.display_table(self.display_playlist)
+        self.display_options
     end
 
     def play_song(selection_number)
@@ -77,6 +77,8 @@ class Playlist < ActiveRecord::Base
         end
         #can also accomplish by array index no.-1
 
+        self.display_playlist_as_table
+
     end
 
     def rename_playlist(name)
@@ -85,19 +87,6 @@ class Playlist < ActiveRecord::Base
 
     
     def delete_song(selection_number)
-
-
-        
-
-
-        # Songs.all.each do |s|
-        #     PlaylistsSongs.all.each do |ps|
-        #         if ps.playlist == self 
-                    
-        #         end
-        #     end
-        # end
-
         song = nil
         self.display_playlist.each do |row|
             if row[:track_no] == selection_number
@@ -109,9 +98,52 @@ class Playlist < ActiveRecord::Base
         PlaylistsSongs.all.each do |pls|
             if pls.song.title == song && pls.playlist == self
                 pls.destroy
-                binding.pry
             end
         end
+        self.display_playlist_as_table
+    end
+
+    def display_options
+        prompt = TTY::Prompt.new
+        selection = prompt.select('Select command') do |menu|
+            menu.choice name: 'play song',  value: 1
+            menu.choice name: 'add song', value: 2
+            menu.choice name: 'delete song',  value: 3
+            menu.choice name: 'rename',  value: 4
+            menu.choice name: 'back',  value: 5
+            menu.choice name: 'EXIT', value: 6
+        end
+    
+        case selection
+        when 1
+            input = prompt.ask('Enter song no.:')
+            self.play_song(input.to_i)
+        when 2
+            song_title = prompt.ask('Enter song title:')
+            artist_name = prompt.ask('Enter artist name:')
+            self.add_song(song_title, artist_name)
+            self.display_playlist_as_table
+        when 3
+            input = prompt.ask('Enter song no. to delete:')
+            self.delete_song(input.to_i)
+            self.display_playlist_as_table
+        when 4
+            input = prompt.ask('Enter new name for playlist:')
+            self.rename_playlist(input)
+            puts "renamed playlist to #{self.name}"
+        when 5
+            user = nil
+            User.all.each do |u|
+                if u == self.user
+                    user = self.user
+                end
+            end
+            user.view_playlists_as_table
+        when 6 
+            exit
+        end
+
+    
     end
 
 
