@@ -18,6 +18,7 @@ user = User.create(name: "Matt")
     current_user = user.id
 
 #Create playlist from user variable
+Playlist.create(name: "Playlist 1", user: user)
 pl = Playlist.create(name: "Playlist 1", user: user)
 Playlist.create(name: "Playlist 2", user: user)
     
@@ -53,6 +54,7 @@ user_playlists = Playlist.where(user_id: 1)
 # Artist.create(name: "Jay-Z")
 # Artist.create(name: "Will Smith")
 # Playlist.create(name: "Playlist 2")
+# Playlist.create(name: "Playlist 3")
 # Playlist.create(name: "Playlist 3")
 
 #::::::::::::::MORE METHODS:::::::::::
