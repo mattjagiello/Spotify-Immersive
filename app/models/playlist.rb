@@ -51,6 +51,10 @@ class Playlist < ActiveRecord::Base
 
     def display_playlist_as_table
         Formatador.display_table(self.display_playlist)
+        if Song.current != nil
+            Formatador.display_line('[green]now playing')
+            p Song.current
+        end
         self.display_options
     end
 
@@ -76,9 +80,8 @@ class Playlist < ActiveRecord::Base
             system("spotify play #{song} #{artist}")
         end
         #can also accomplish by array index no.-1
-
+        Song.current=(song)
         self.display_playlist_as_table
-
     end
 
     def rename_playlist(name)

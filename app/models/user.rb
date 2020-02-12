@@ -177,7 +177,7 @@ end
             end
         end
     end
-    
+
 #Remove Playlist
     def remove_playlist(name)
         if Playlist.where(name: name) == []
