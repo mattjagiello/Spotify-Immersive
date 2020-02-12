@@ -7,6 +7,12 @@ GIT
       omniauth-oauth2 (~> 1.5.0)
       rest-client (~> 2.0.2)
 
+GIT
+  remote: https://github.com/geemus/formatador.git
+  revision: 151e24c3ee798ccb68cd1809561bc42f4030d723
+  specs:
+    formatador (0.2.5)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -92,6 +98,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  formatador!
   pry
   require_all
   rspotify!
@@ -99,4 +106,4 @@ DEPENDENCIES
   sqlite3
 
 BUNDLED WITH
-   1.14.6
+   2.1.4
