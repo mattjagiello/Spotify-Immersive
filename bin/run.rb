@@ -1,5 +1,9 @@
 require_relative '../config/environment'
 
 
+# Dir["../app/models"].each {|file| require file }
+# Dir["../db"].each {|file| require file }
 
-puts "HELLO WORLD"
+
+# (Formatador.display_line('[green]Hello Besh')) + (Formatador.display_line('[green]Hello Besh'))
+User.login
