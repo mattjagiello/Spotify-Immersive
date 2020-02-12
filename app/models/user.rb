@@ -2,6 +2,17 @@ class User < ActiveRecord::Base
     has_many :playlists
     has_many :songs, through: :playlists
 
+#Prompt for user login/password, calls self.find_or_create_user method
+def self.login
+prompt = TTY::Prompt.new
+name = prompt.ask ('Hello! Enter username to login or create new user.') do |q|
+    q.required true
+    q.validate /\A\w+\Z/
+    end
+password = prompt.mask("Enter a password - not required.")
+User.find_or_create_user(name, password)
+User.view_playlists
+end
 
 #TTY prompt to get argument, return user if found or create user if not found
 #Need to add password functionality via run console

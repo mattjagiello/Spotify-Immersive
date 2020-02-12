@@ -7,3 +7,4 @@ gem "pry"
 gem "require_all"
 gem "rspotify", :git => "git@github.com:guilhermesad/rspotify.git"
 gem "formatador", :git => "https://github.com/geemus/formatador.git"
+gem 'tty-prompt'
