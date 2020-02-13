@@ -106,8 +106,12 @@ def self.login
     def view_playlists_as_table
         Formatador.display_table(self.view_playlists)
         prompt = TTY::Prompt.new
-        input = prompt.ask('Enter playlist number:')
-        self.choose_playlist(input.to_i)
+        input = prompt.ask('Enter playlist number or "0" to go back.')
+        if name == "0"
+            self.playlist_options
+        else
+        self.playlist_options
+        end
     end
 
     #Generate Blank Playlist or By Genre
