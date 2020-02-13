@@ -1,6 +1,8 @@
 require 'bundler'
 Bundler.require
 require 'active_record'
+# require 'rubygems'
+# require 'wikipedia'
 ActiveRecord::Base.establish_connection(adapter: 'sqlite3', database: 'db/development.db')
 ActiveRecord::Base.logger = Logger.new(STDOUT)
 ActiveRecord::Base.logger.level = 1
