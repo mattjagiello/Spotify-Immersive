@@ -45,7 +45,7 @@ screenshot here
 We really wanted to complete all of our stretch goals and add a method that returned a list of tour dates for a requested artist. Our preferred website to do this, Songkick, takes up to 7 days to respond to a request for a key -- we applied for one but the key came after the project deadline had already passed. We ended up using Ticketmaster to pull upcoming tour dates and are trying to squeeze it in as a final feature as of this writing.
 
 ## Code Highlight
-`
+```
   #The following code plays a song in spotify through a cli command and stores that song as current song.
         if artist == nil || song == nil
             return "Song is not in #{self.name} playlist"
@@ -55,4 +55,4 @@ We really wanted to complete all of our stretch goals and add a method that retu
         #can also accomplish by array index no.-1
         Song.current=(song)
         self.display_playlist_as_table
-`
+```
