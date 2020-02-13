@@ -1,5 +1,5 @@
 # Spotify Immersive :musical_note:
-A CLI based app showcasing Spotify and Wikipedia interactivity by [Aaiden Witten](https://github.com/aaidenplays) and [Matt Jagiello](https://github.com/mattjagiello)
+A CLI based app showcasing Spotify, Wikipedia, and Ticketmaster interactivity by [Aaiden Witten](https://github.com/aaidenplays) and [Matt Jagiello](https://github.com/mattjagiello)
 
 ![Spotify Immersive Splash Screen](https://github.com/mattjagiello/ruby-project-guidelines-austin-web-012720/blob/finalchanges/images/program%20splash.png)
 
@@ -14,7 +14,7 @@ A CLI based app showcasing Spotify and Wikipedia interactivity by [Aaiden Witten
 1. Be sure you have downloaded and [installed Ruby](https://www.ruby-lang.org/en/documentation/installation/) on your computer in order to run Ruby files.
 2. Clone this project repo down to your local computer.
 3. Navigate to the folder where you downloaded the repo and run `bundle` in your terminal to install the required gems and components for the app.
-4. What you need to play songs???
+4. In order to play songs in the Spotify desktop app from from the playlist via the 'play song' CLI option, you will need to install the ['shpotify'](https://github.com/hnarayanan/shpotify) [Homebrew](https://brew.sh/) application using the terminal command `brew install shpotify` or [click here](https://medium.com/@dallasbille/controlling-your-spotify-from-terminal-a505990bafc2) for a walkthrough.
 5. Run the command `rake db:migrate` in your terminal to create the local SQLite3 database.
 6. Open the app via CLI by running `ruby bin/run.rb`
 
@@ -28,10 +28,18 @@ A CLI based app showcasing Spotify and Wikipedia interactivity by [Aaiden Witten
 ![Generate playlist by genre](https://github.com/mattjagiello/ruby-project-guidelines-austin-web-012720/blob/finalchanges/images/generate%20by%20genre.png)
 
 - CRUD functionality to add/remove/rename playlists from the SQLite3 database and to add/remove songs from individual playlists.
+
 - Ability to open individual songs from playlist in Spotify for playback!
-screenshot here
+
+![Play song in Spotify](https://github.com/mattjagiello/ruby-project-guidelines-austin-web-012720/blob/master/images/play_song.png)
+
 - After song playback has started, can view information about artist pulled from their Wikipedia page via API.
-screenshot here
+
+![View artist information](https://github.com/mattjagiello/ruby-project-guidelines-austin-web-012720/blob/master/images/view_artist_info.png)
+
+- After song playback has started, able to view artist's next tour date information pulled from Ticketmaster API.
+
+![View next tour date information](https://github.com/mattjagiello/ruby-project-guidelines-austin-web-012720/blob/master/images/view_artist_tour_date.png)
 
 ## Interesting Notes
 
