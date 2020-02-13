@@ -110,6 +110,7 @@ GEM
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.7.6)
+    wikipedia-client (1.10.0)
     wisper (2.0.1)
 
 PLATFORMS
@@ -124,6 +125,7 @@ DEPENDENCIES
   sinatra-activerecord
   sqlite3
   tty-prompt
+  wikipedia-client
 
 BUNDLED WITH
    2.1.4
