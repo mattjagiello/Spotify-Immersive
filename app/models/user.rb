@@ -32,7 +32,6 @@ def self.login
     password = prompt.mask("Enter a password - not required.")
     User.find_or_create_user(name, password)
     puts "#{name}'s Playlist Options"
-    puts "\n"
     login_user = User.all.select{|x| x.name == name}
     login_user[0].playlist_options
     end
