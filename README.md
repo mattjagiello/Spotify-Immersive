@@ -46,13 +46,13 @@ We really wanted to complete all of our stretch goals and add a method that retu
 
 ## Code Highlight
 ```
-  #The following code plays a song in spotify through a cli command and stores that song as current song.
-        if artist == nil || song == nil
-            return "Song is not in #{self.name} playlist"
-        else
-            system("spotify play #{song} #{artist}")
-        end
-        #can also accomplish by array index no.-1
-        Song.current=(song)
-        self.display_playlist_as_table
+#The following code plays a song in spotify through a cli command and stores that song as current song.
+    if artist == nil || song == nil
+        return "Song is not in #{self.name} playlist"
+    else
+        system("spotify play #{song} #{artist}")
+    end
+    #can also accomplish by array index no.-1
+    Song.current=(song)
+    self.display_playlist_as_table
 ```
