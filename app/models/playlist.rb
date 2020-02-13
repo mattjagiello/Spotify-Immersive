@@ -1,4 +1,5 @@
 require_relative 'user.rb'
+require 'wikipedia'
 
 class Playlist < ActiveRecord::Base
     belongs_to :user
@@ -113,7 +114,7 @@ class Playlist < ActiveRecord::Base
             end
         end
     end
-
+  
     def display_options
         prompt = TTY::Prompt.new
         selection = prompt.select('Select command') do |menu|
@@ -126,7 +127,7 @@ class Playlist < ActiveRecord::Base
             menu.choice name: 'back',  value: 7
             menu.choice name: 'EXIT', value: 8
         end
-    
+      
         case selection
         when 1
             input = prompt.ask('Enter song no.:')
@@ -162,9 +163,5 @@ class Playlist < ActiveRecord::Base
         when 8
             exit
         end
-
-    
     end
-
-
 end

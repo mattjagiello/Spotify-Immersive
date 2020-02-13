@@ -1,61 +1,63 @@
-# Module One Final Project Guidelines
+# Spotify Immersive :musical_note:
+A CLI based app showcasing Spotify and Wikipedia interactivity by [Aaiden Witten](https://github.com/aaidenplays) and [Matt Jagiello](https://github.com/mattjagiello)
 
+![Spotify Immersive Splash Screen](https://github.com/mattjagiello/ruby-project-guidelines-austin-web-012720/blob/finalchanges/images/program%20splash.png)
 
+## Technologies
+[Ruby](https://www.ruby-lang.org/en/)
 
-Congratulations, you're at the end of module one! You've worked crazy hard to get here and have learned a ton.
+[Active Record](https://guides.rubyonrails.org/active_record_basics.html)
 
-For your final project, we'll be building a Command Line database application.
+[SQLite3](https://www.sqlite.org/version3.html)
 
-## Project Requirements
+## Getting Started
+1. Be sure you have downloaded and [installed Ruby](https://www.ruby-lang.org/en/documentation/installation/) on your computer in order to run Ruby files.
+2. Clone this project repo down to your local computer.
+3. Navigate to the folder where you downloaded the repo and run `bundle` in your terminal to install the required gems and components for the app.
+4. What you need to play songs???
+5. Run the command `rake db:migrate` in your terminal to create the local SQLite3 database.
+6. Open the app via CLI by running `ruby bin/run.rb`
 
-### Option One - Data Analytics Project
+## Features
+- Individual user accounts saved to the local SQLite3 database via Active Record. User accounts are password protected so users will not be able to view/modify the playlists of other users.
 
-1. Access a Sqlite3 Database using ActiveRecord.
-2. You should have at minimum three models including one join model. This means you must have a many-to-many relationship.
-3. You should seed your database using data that you collect either from a CSV, a website by scraping, or an API.
-4. Your models should have methods that answer interesting questions about the data. For example, if you've collected info about movie reviews, what is the most popular movie? What movie has the most reviews?
-5. You should provide a CLI to display the return values of your interesting methods.  
-6. Use good OO design patterns. You should have separate classes for your models and CLI interface.
+![Wrong password](https://raw.githubusercontent.com/mattjagiello/ruby-project-guidelines-austin-web-012720/finalchanges/images/wrong%20password.png)
 
-  **Resource:** [Easy Access APIs](https://github.com/learn-co-curriculum/easy-access-apis)
+- Automatically generating playlists by genre from Spotify's recommendation algorithm via API call.
 
-### Option Two - Command Line CRUD App
+![Generate playlist by genre](https://github.com/mattjagiello/ruby-project-guidelines-austin-web-012720/blob/finalchanges/images/generate%20by%20genre.png)
 
-1. Access a Sqlite3 Database using ActiveRecord.
-2. You should have a minimum of three models.
-3. You should build out a CLI to give your user full CRUD ability for at least one of your resources. For example, build out a command line To-Do list. A user should be able to create a new to-do, see all todos, update a todo item, and delete a todo. Todos can be grouped into categories, so that a to-do has many categories and categories have many to-dos.
-4. Use good OO design patterns. You should have separate models for your runner and CLI interface.
+- CRUD functionality to add/remove/rename playlists from the SQLite3 database and to add/remove songs from individual playlists.
+- Ability to open individual songs from playlist in Spotify for playback!
+screenshot here
+- After song playback has started, can view information about artist pulled from their Wikipedia page via API.
+screenshot here
 
-### Brainstorming and Proposing a Project Idea
+## Interesting Notes
 
-Projects need to be approved prior to launching into them, so take some time to brainstorm project options that will fulfill the requirements above.  You must have a minimum of four [user stories](https://en.wikipedia.org/wiki/User_story) to help explain how a user will interact with your app.  A user story should follow the general structure of `"As a <role>, I want <goal/desire> so that <benefit>"`. In example, if we were creating an app to randomly choose nearby restaurants on Yelp, we might write:
+The play_song method was difficult to wrap our mind around. Would we be able to play music back in the CLI? Did we have to open up a browser with the song URI? After some initial research, we were able to find a [homebrew](https://brew.sh/) package called [‘shpotify’](https://github.com/hnarayanan/shpotify) that was designed specifically for Spotify interaction. Once we downloaded and set it up, all we had to do was add `window(command)` in our Ruby code and we achieved playback in the Spotify desktop app! :metal:
 
-* As a user, I want to be able to enter my name to retrieve my records
-* As a user, I want to enter a location and be given a random nearby restaurant suggestion
-* As a user, I should be able to reject a suggestion and not see that restaurant suggestion again
-* As a user, I want to be able to save to and retrieve a list of favorite restaurant suggestions
+### What We Learned
 
-## Instructions
+1. While working on this project we found a plethora of [Ruby gems](https://rubygems.org/) on the web. Several times when attempting to install or configure a gem in the code, it ended up crashing the entire program execution. Our knowledge of working with these gems feels much more solid after this experience.
 
-1. Fork and clone this repository.
-2. Build your application. Make sure to commit early and commit often. Commit messages should be meaningful (clearly describe what you're doing in the commit) and accurate (there should be nothing in the commit that doesn't match the description in the commit message). Good rule of thumb is to commit every 3-7 mins of actual coding time. Most of your commits should have under 15 lines of code and a 2 line commit is perfectly acceptable.
-3. Make sure to create a good README.md with a short description, install instructions, a contributors guide and a link to the license for your code.
-4. Make sure your project checks off each of the above requirements.
-5. Prepare a video demo (narration helps!) describing how a user would interact with your working project.
-    * The video should:
-      - Have an overview of your project.(2 minutes max)
-6. Prepare a presentation to follow your video.(3 minutes max)
-    * Your presentation should:
-      - Describe something you struggled to build, and show us how you ultimately implemented it in your code.
-      - Discuss 3 things you learned in the process of working on this project.
-      - Address, if anything, what you would change or add to what you have today?
-      - Present any code you would like to highlight.   
-7. *OPTIONAL, BUT RECOMMENDED*: Write a blog post about the project and process.
+2. Github has been a looming shadow of hesitance lingering in the back of our collective consciousness since day one. The advantage of working with a partner was learning how to navigate Github and commit/update to the project without overwriting our repo with broken code. Our understanding of Github is still somewhat cloudy but thanks to this project it is starting to clear up.
 
----
-### Common Questions:
-- How do I turn off my SQL logger?
-```ruby
-# in config/environment.rb add this line:
-ActiveRecord::Base.logger = nil
+3. Project planning was the most important factor in this project. Together we learned how to set up complex class and object associations correctly through ActiveRecord. Prioritizing and delegating our development tasks was also a valuable aspect of our process which we did well. We were able to set and complete stretch goals that we vowed not to start until our program was running as a minimum viable product.
+
+### What We Would Change
+
+We really wanted to complete all of our stretch goals and add a method that returned a list of tour dates for a requested artist. Our preferred website to do this, Songkick, takes up to 7 days to respond to a request for a key -- we applied for one but the key did not arrive by the time of the project deadline. We ended up using Ticketmaster to pull upcoming tour dates and are trying to squeeze it in as a final feature as of this writing.
+
+### Code Highlight
+```
+#The following code plays a song in spotify through a cli command and stores that song as current song.
+    if artist == nil || song == nil
+        return "Song is not in #{self.name} playlist"
+    else
+        system("spotify play #{song} #{artist}")
+    end
+    #can also accomplish by array index no.-1
+    Song.current=(song)
+    self.display_playlist_as_table
 ```

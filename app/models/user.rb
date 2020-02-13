@@ -2,10 +2,27 @@ class User < ActiveRecord::Base
     has_many :playlists
     has_many :songs, through: :playlists
 
+def self.logo
+    puts "     ___|)___________________________________________________________
+    |___/____________________________________________________________
+    |__/|____________________________________________________________
+    |_/(|,\\__________________________________________________________
+    |_\\_|_/__________________________________________________________
+    |   |
+    | (_|         SPOTIFY IMMERSIVE
+    |                     by Aaiden Witten and Matt Jagiello
+    |________________________________________________________________
+    |__/___\\_._______________________________________________________
+    |__\\___|_._______________________________________________________
+    |_____/__________________________________________________________
+    |____/___________________________________________________________".colorize(:color => :green)
+end
+
 #Prompt for user login/password, calls self.find_or_create_user method
 def self.login
+    self.logo
     prompt = TTY::Prompt.new
-    name = prompt.ask ("Enter username to login or create new user. Type 'Exit' to quit.") do |q|
+    name = prompt.ask ("\nEnter username to login or create new user. Type 'Exit' to quit.") do |q|
         q.required true
         q.validate /\A\w+\Z/
         end
@@ -14,7 +31,7 @@ def self.login
         end
     password = prompt.mask("Enter a password - not required.")
     User.find_or_create_user(name, password)
-    puts "#{name}'s Playlist Options"
+    puts "#{name}'s Playlist Options".colorize(:color => :light_blue)
     login_user = User.all.select{|x| x.name == name}
     login_user[0].playlist_options
     end
@@ -30,7 +47,9 @@ def self.login
                 end
             id = uobject[0].id
             uname = uobject[0].name
+            puts "\n"
             p "Welcome back, #{uname}!"
+            puts "\n"
         else
             User.create(name: username, password: password)
             uname = User.last.name
@@ -54,7 +73,7 @@ def self.login
         when 2
             self.playlist_pick
         when 3
-            self.view_playlists_as_table
+            Formatador.display_table(self.view_playlists)
             name = prompt.ask ("Enter a playlist name to delete.") do |q|
                 q.required true
                 if name == "Back"
@@ -63,10 +82,14 @@ def self.login
             end
             all_plnames = Playlist.all.collect{|x| x.name}
             if all_plnames.exclude?(name)
-                puts "No matching playlist name -- try again." 
+                puts "\n"
+                puts "No matching playlist name -- try again."
+                puts "\n"
             else
                 self.remove_playlist(name)
+                puts "\n"
                 puts "Playlist #{name} deleted!"
+                puts "\n"
             end
             self.playlist_options
         when 4
@@ -106,9 +129,13 @@ def self.login
     def view_playlists_as_table
         Formatador.display_table(self.view_playlists)
         prompt = TTY::Prompt.new
-        input = prompt.ask('Enter playlist number or "0" to go back.')
+        input = prompt.ask("Enter playlist number to select, press '0' to go back or '-1' to exit.")
+
         if input == "0"
             self.playlist_options
+        elsif input == "-1"
+            puts "Bye!"
+            exit
         else
         self.choose_playlist(input.to_i)
         end
@@ -129,7 +156,9 @@ def playlist_pick
             q.required true
         end
         self.generate_playlist(plname)
+        puts "\n"
         p "Playlist #{plname} created!"
+        puts "\n"
         self.playlist_options
     when 2
         name = prompt.ask ("Enter a playlist name.") do |q|
@@ -143,7 +172,9 @@ def playlist_pick
         end
         number = plnumber.to_i
         self.generate_playlist_by_genre(name, genre, number)
+        puts "\n"
         puts "#{name} playlist created!"
+        puts "\n"
         self.playlist_options
     when 3
         self.playlist_options

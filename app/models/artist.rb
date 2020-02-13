@@ -1,10 +1,11 @@
 require 'rubygems'
 require 'wikipedia'
-
+require 'active_record'
+require 'pry'
+ActiveRecord::Base.establish_connection(adapter: 'sqlite3', database: 'db/development.db')
 
 class Artist < ActiveRecord::Base
     has_and_belongs_to_many :songs
-
     
     def view_artist_tour_info
         params = {keyword: "#{self.name}", page: 0, size: 10, source: 'ticketmaster'}
@@ -66,6 +67,4 @@ class Artist < ActiveRecord::Base
             end
         end
     end
-
-
 end
