@@ -22,7 +22,7 @@ end
 def self.login
     self.logo
     prompt = TTY::Prompt.new
-    name = prompt.ask ("Enter username to login or create new user. Type 'Exit' to quit.") do |q|
+    name = prompt.ask ("\nEnter username to login or create new user. Type 'Exit' to quit.") do |q|
         q.required true
         q.validate /\A\w+\Z/
         end
@@ -32,6 +32,7 @@ def self.login
     password = prompt.mask("Enter a password - not required.")
     User.find_or_create_user(name, password)
     puts "#{name}'s Playlist Options"
+    puts "\n"
     login_user = User.all.select{|x| x.name == name}
     login_user[0].playlist_options
     end
@@ -47,7 +48,9 @@ def self.login
                 end
             id = uobject[0].id
             uname = uobject[0].name
+            puts "\n"
             p "Welcome back, #{uname}!"
+            puts "\n"
         else
             User.create(name: username, password: password)
             uname = User.last.name
@@ -83,7 +86,9 @@ def self.login
                 puts "No matching playlist name -- try again." 
             else
                 self.remove_playlist(name)
+                puts "\n"
                 puts "Playlist #{name} deleted!"
+                puts "\n"
             end
             self.playlist_options
         when 4
@@ -149,7 +154,9 @@ def playlist_pick
             q.required true
         end
         self.generate_playlist(plname)
+        puts "\n"
         p "Playlist #{plname} created!"
+        puts "\n"
         self.playlist_options
     when 2
         name = prompt.ask ("Enter a playlist name.") do |q|
@@ -163,7 +170,9 @@ def playlist_pick
         end
         number = plnumber.to_i
         self.generate_playlist_by_genre(name, genre, number)
+        puts "\n"
         puts "#{name} playlist created!"
+        puts "\n"
         self.playlist_options
     when 3
         self.playlist_options
