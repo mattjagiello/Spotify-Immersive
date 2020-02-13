@@ -42,7 +42,7 @@ The play_song method was difficult to wrap our mind around. Would we be able to 
 
 ### What We Would Change
 
-We really wanted to complete all of our stretch goals and add a method that returned a list of tour dates for a requested artist. Our preferred website to do this, Songkick, takes up to 7 days to respond to a request for a key -- we applied for one but the key came after the project deadline had already passed. We ended up using Ticketmaster to pull upcoming tour dates and are trying to squeeze it in as a final feature as of this writing.
+We really wanted to complete all of our stretch goals and add a method that returned a list of tour dates for a requested artist. Our preferred website to do this, Songkick, takes up to 7 days to respond to a request for a key -- we applied for one but the key did not arrive by the time of the project deadline. We ended up using Ticketmaster to pull upcoming tour dates and are trying to squeeze it in as a final feature as of this writing.
 
 ### Code Highlight
 ```
