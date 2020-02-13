@@ -15,7 +15,7 @@ def self.logo
     |__/___\\_._______________________________________________________
     |__\\___|_._______________________________________________________
     |_____/__________________________________________________________
-    |____/___________________________________________________________"
+    |____/___________________________________________________________".colorize(:color => :green)
 end
 
 #Prompt for user login/password, calls self.find_or_create_user method
@@ -31,7 +31,7 @@ def self.login
         end
     password = prompt.mask("Enter a password - not required.")
     User.find_or_create_user(name, password)
-    puts "#{name}'s Playlist Options"
+    puts "#{name}'s Playlist Options".colorize(:color => :light_blue)
     login_user = User.all.select{|x| x.name == name}
     login_user[0].playlist_options
     end
