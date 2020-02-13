@@ -1,5 +1,6 @@
 # Spotify Immersive :musical_note:
 A CLI based app showcasing Spotify and Wikipedia interactivity by [Aaiden Witten](https://github.com/aaidenplays) and [Matt Jagiello](https://github.com/mattjagiello)
+![Program Splash Screen](https://github.com/mattjagiello/ruby-project-guidelines-austin-web-012720/blob/finalchanges/images/program%20splash.png)
 
 ## Technologies
 [Ruby](https://www.ruby-lang.org/en/)
