@@ -2,8 +2,9 @@
 A CLI based app showcasing Spotify and Wikipedia interactivity by [Aaiden Witten](https://github.com/aaidenplays) and [Matt Jagiello](https://github.com/mattjagiello)
 
 ## Technologies
-	- [Ruby](https://www.ruby-lang.org/en/)
-	- [Active Record[(https://guides.rubyonrails.org/active_record_basics.html)	
+[Ruby](https://www.ruby-lang.org/en/)
+
+[Active Record](https://guides.rubyonrails.org/active_record_basics.html)
 
 ## Getting Started
 
