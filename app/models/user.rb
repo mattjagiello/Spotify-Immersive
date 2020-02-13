@@ -83,7 +83,9 @@ def self.login
             end
             all_plnames = Playlist.all.collect{|x| x.name}
             if all_plnames.exclude?(name)
-                puts "No matching playlist name -- try again." 
+                puts "\n"
+                puts "No matching playlist name -- try again."
+                puts "\n"
             else
                 self.remove_playlist(name)
                 puts "\n"
