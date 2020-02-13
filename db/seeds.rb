@@ -1,4 +1,4 @@
-RSpotify.authenticate("a09377aa120c4a68ba377892982cb5cf", "c3a52e31188c43b6930c737fbe8a3026")
+RSpotify.authenticate("xxxyyy", "xxxyyy")
 # recommendations = RSpotify::Recommendations.generate(limit: 1, seed_genres: ['chill', 'focus'])
 # rec_songs = recommendations.tracks
 # p rec_songs.collect {|x| x.name}
