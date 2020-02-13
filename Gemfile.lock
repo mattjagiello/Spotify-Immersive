@@ -124,6 +124,7 @@ DEPENDENCIES
   sinatra-activerecord
   sqlite3
   tty-prompt
+  wikipedia
 
 BUNDLED WITH
    2.1.4

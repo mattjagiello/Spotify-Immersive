@@ -1,4 +1,5 @@
 require_relative 'user.rb'
+require 'wikipedia'
 
 class Playlist < ActiveRecord::Base
     belongs_to :user
@@ -112,11 +113,12 @@ class Playlist < ActiveRecord::Base
             menu.choice name: 'play song',  value: 1
             menu.choice name: 'add song', value: 2
             menu.choice name: 'delete song',  value: 3
-            menu.choice name: 'rename',  value: 4
-            menu.choice name: 'back',  value: 5
-            menu.choice name: 'EXIT', value: 6
+            menu.choice name: 'read current artist info', value: 4
+            menu.choice name: 'rename',  value: 5
+            menu.choice name: 'back',  value: 6
+            menu.choice name: 'EXIT', value: 7
         end
-    
+
         case selection
         when 1
             input = prompt.ask('Enter song no.:')
@@ -131,12 +133,12 @@ class Playlist < ActiveRecord::Base
             self.delete_song(input.to_i)
             self.display_playlist_as_table
         when 4
-            input = prompt.ask('Enter new name for playlist:')
-            self.rename_playlist(input)
-            puts "\n"
-            puts "renamed playlist to #{self.name}"
-            puts "\n"
+            self.current_artist.read_info
         when 5
+            input = prompt.ask('Enter new name for playlist:')
+            rename_playlist(input)
+            puts "renamed playlist to #{self.name}"
+        when 6
             user = nil
             User.all.each do |u|
                 if u == self.user
@@ -144,11 +146,9 @@ class Playlist < ActiveRecord::Base
                 end
             end
             user.view_playlists_as_table
-        when 6 
+        when 7
             exit
         end
-
-    
     end
 
 
