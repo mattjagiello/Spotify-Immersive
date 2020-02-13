@@ -54,7 +54,7 @@ def self.login
         when 2
             self.playlist_pick
         when 3
-            self.view_playlists
+            self.view_playlists_as_table
             name = prompt.ask ("Enter a playlist name to delete.") do |q|
                 q.required true
                 if name == "Back"
