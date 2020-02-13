@@ -35,7 +35,7 @@ screenshot here
 
 ## Interesting Notes
 
-The play_song method was difficult to wrap our mind around. Would we be able to play music back in the CLI? Did we have to open up a browser with the song URI? After some initial research, we were able to find a [homebrew](https://brew.sh/) package called ‘shpotify’ that was designed specifically for Spotify interaction. Once we downloaded and set it up, all we had to do was add `window(command)` in our Ruby code and we achieved playback in the Spotify desktop app! :metal:
+The play_song method was difficult to wrap our mind around. Would we be able to play music back in the CLI? Did we have to open up a browser with the song URI? After some initial research, we were able to find a [homebrew](https://brew.sh/) package called [‘shpotify’](https://github.com/hnarayanan/shpotify) that was designed specifically for Spotify interaction. Once we downloaded and set it up, all we had to do was add `window(command)` in our Ruby code and we achieved playback in the Spotify desktop app! :metal:
 
 ### What We Learned
 
