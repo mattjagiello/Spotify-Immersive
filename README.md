@@ -42,7 +42,18 @@ Github has been a looming shadow of hesitance lingering in the back of my consci
 Project planning was the quintessential objective for this project. Together we learned how to set up object associations through ActiveRecord. Prioritizing was also a valuable aspect of our process which I feel we did well. Setting stretch goals that we vowed not to start until our program was running in at least its most child but functioning state.
 - Address, if anything, what you would change or add to what you have today?
 
-We really wanted to add a method that returned a list of tour dates for artists passed in. The only problem was Songkick takes up to 7 days to respond to a request for a key. We applied but the key came after the deadline has already passed.
+We really wanted to add a method that returned a list of tour dates for artists passed in. The only problem was Songkick takes up to 7 days to respond to a request for a key. We applied but the key came after the deadline had already passed.
 
 - Present any code you would like to highlight.
+```
+  #The following code plays a song in spotify through a cli command and stores that song as current song.
+        if artist == nil || song == nil
+            return "Song is not in #{self.name} playlist"
+        else
+            system("spotify play #{song} #{artist}")
+        end
+        #can also accomplish by array index no.-1
+        Song.current=(song)
+        self.display_playlist_as_table
 
+```
