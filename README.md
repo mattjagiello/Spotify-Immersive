@@ -1,5 +1,6 @@
 # Spotify Immersive :musical_note:
 A CLI based app showcasing Spotify and Wikipedia interactivity by [Aaiden Witten](https://github.com/aaidenplays) and [Matt Jagiello](https://github.com/mattjagiello)
+
 ![Spotify Immersive Splash Screen](https://github.com/mattjagiello/ruby-project-guidelines-austin-web-012720/blob/finalchanges/images/program%20splash.png)
 
 ## Technologies
@@ -19,9 +20,13 @@ A CLI based app showcasing Spotify and Wikipedia interactivity by [Aaiden Witten
 
 ## Features
 - Individual user accounts saved to the local SQLite3 database via Active Record. User accounts are password protected so users will not be able to view/modify the playlists of other users.
+
 ![Wrong password](https://raw.githubusercontent.com/mattjagiello/ruby-project-guidelines-austin-web-012720/finalchanges/images/wrong%20password.png)
+
 - Automatically generating playlists by genre from Spotify's recommendation algorithm via API call.
+
 ![Generate playlist by genre](https://github.com/mattjagiello/ruby-project-guidelines-austin-web-012720/blob/finalchanges/images/generate%20by%20genre.png)
+
 - CRUD functionality to add/remove/rename playlists from the SQLite3 database and to add/remove songs from individual playlists.
 - Ability to open individual songs from playlist in Spotify for playback!
 screenshot here
