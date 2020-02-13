@@ -39,7 +39,7 @@ The play_song method was difficult to wrap our mind around. Would we be able to 
 
 ### What We Learned
 
-1. While working on this project we found a plethora of Ruby gems on the web. Several times when attempting to install or configure a gem in the code, it ended up crashing the entire program execution. Our knowledge of working with these gems feels much more solid after this experience.
+1. While working on this project we found a plethora of [Ruby gems](https://rubygems.org/) on the web. Several times when attempting to install or configure a gem in the code, it ended up crashing the entire program execution. Our knowledge of working with these gems feels much more solid after this experience.
 
 2. Github has been a looming shadow of hesitance lingering in the back of our collective consciousness since day one. The advantage of working with a partner was learning how to navigate Github and commit/update to the project without overwriting our repo with broken code. Our understanding of Github is still somewhat cloudy but thanks to this project it is starting to clear up.
 
