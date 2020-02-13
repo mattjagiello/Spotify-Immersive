@@ -8,5 +8,6 @@ gem "require_all"
 gem "rspotify", :git => "git@github.com:guilhermesad/rspotify.git"
 gem "formatador", :git => "https://github.com/geemus/formatador.git"
 gem 'tty-prompt'
+gem 'ticketmaster-sdk'
 gem 'colorize'
 gem 'wikipedia-client'

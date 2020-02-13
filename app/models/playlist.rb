@@ -114,7 +114,7 @@ class Playlist < ActiveRecord::Base
             end
         end
     end
-
+  
     def display_options
         prompt = TTY::Prompt.new
         selection = prompt.select('Select command') do |menu|
@@ -122,11 +122,12 @@ class Playlist < ActiveRecord::Base
             menu.choice name: 'add song', value: 2
             menu.choice name: 'delete song',  value: 3
             menu.choice name: 'read current artist info', value: 4
-            menu.choice name: 'rename',  value: 5
-            menu.choice name: 'back',  value: 6
-            menu.choice name: 'EXIT', value: 7
+            menu.choice name: 'view next tour date', value: 5
+            menu.choice name: 'rename',  value: 6
+            menu.choice name: 'back',  value: 7
+            menu.choice name: 'EXIT', value: 8
         end
-
+      
         case selection
         when 1
             input = prompt.ask('Enter song no.:')
@@ -142,11 +143,16 @@ class Playlist < ActiveRecord::Base
             self.display_playlist_as_table
         when 4
             self.current_artist.read_info
+            self.display_playlist_as_table
         when 5
+            self.current_artist.view_artist_tour_info
+            sleep 7
+            self.display_playlist_as_table
+        when 6
             input = prompt.ask('Enter new name for playlist:')
             rename_playlist(input)
             puts "renamed playlist to #{self.name}"
-        when 6
+        when 7
             user = nil
             User.all.each do |u|
                 if u == self.user
@@ -154,10 +160,8 @@ class Playlist < ActiveRecord::Base
                 end
             end
             user.view_playlists_as_table
-        when 7
+        when 8
             exit
         end
     end
-
-
 end

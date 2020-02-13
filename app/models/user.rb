@@ -130,6 +130,7 @@ def self.login
         Formatador.display_table(self.view_playlists)
         prompt = TTY::Prompt.new
         input = prompt.ask("Enter playlist number to select, press '0' to go back or '-1' to exit.")
+
         if input == "0"
             self.playlist_options
         elsif input == "-1"
