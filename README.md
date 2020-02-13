@@ -29,23 +29,23 @@ screenshot here
 screenshot here
 
 ## Interesting Notes
-- Describe something you struggled to build, and show us how you ultimately implemented it in your code.
 
-The play_song method was difficult to wrap our mind around. We had to first research how to even operate Spotify from the CLI. Luckily, there was a brew online called ‘shpotify’ that was designed specifically for that task. Once downloaded all we had to do was window(command) in our ruby code and voila!
+- The play_song method was difficult to wrap our mind around. Would we be able to play music back in the CLI? Did we have to open up a browser with the song URI? After some initial research, we were able to find a [homebrew](https://brew.sh/) package called ‘shpotify’ that was designed specifically for Spotify interaction. Once we downloaded and set it up, all we had to do was add `window(command)` in our Ruby code and we achieved playback in the Spotify desktop app! :metal:
 
-- Discuss 3 things you learned in the process of working on this project.
+## What We Learned
 
-While working on this project we found a plethora of gems on the web. This was our first time requiring and installing them without help from a instructor or lab. 
+1. While working on this project we found a plethora of Ruby gems on the web. Several times when attempting to install or configure a gem in the code, it ended up crashing the entire program execution. Our knowledge of working with these gems feels much more solid after this experience.
 
-Github has been a looming shadow of hesitance lingering in the back of my consciousness since day one. While working on this project with a partner we learned how to navigate github at a pretty decent rate. Our understanding of github is still somewhat cloudy but thanks to this project it is starting to clear up.
+2. Github has been a looming shadow of hesitance lingering in the back of our collective consciousness since day one. The advantage of working with a partner was learning how to navigate Github and commit/update to the project without overwriting our repo with broken code. Our understanding of Github is still somewhat cloudy but thanks to this project it is starting to clear up.
 
-Project planning was the quintessential objective for this project. Together we learned how to set up object associations through ActiveRecord. Prioritizing was also a valuable aspect of our process which I feel we did well. Setting stretch goals that we vowed not to start until our program was running in at least its most child but functioning state.
-- Address, if anything, what you would change or add to what you have today?
+3. Project planning was the most important factor in this project. Together we learned how to set up complex class and object associations correctly through ActiveRecord. Prioritizing and delegating our development tasks was also a valuable aspect of our process which we did well. We were able to set and complete stretch goals that we vowed not to start until our program was running as a minimum viable product.
 
-We really wanted to add a method that returned a list of tour dates for artists passed in. The only problem was Songkick takes up to 7 days to respond to a request for a key. We applied but the key came after the deadline had already passed.
+## What We Would Change
 
-- Present any code you would like to highlight.
-```
+We really wanted to complete all of our stretch goals and add a method that returned a list of tour dates for a requested artist. Our preferred website to do this, Songkick, takes up to 7 days to respond to a request for a key -- we applied for one but the key came after the project deadline had already passed. We ended up using Ticketmaster to pull upcoming tour dates and are trying to squeeze it in as a final feature as of this writing.
+
+## Code Highlight
+`
   #The following code plays a song in spotify through a cli command and stores that song as current song.
         if artist == nil || song == nil
             return "Song is not in #{self.name} playlist"
@@ -55,5 +55,4 @@ We really wanted to add a method that returned a list of tour dates for artists 
         #can also accomplish by array index no.-1
         Song.current=(song)
         self.display_playlist_as_table
-
-```
+`
