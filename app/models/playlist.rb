@@ -107,6 +107,14 @@ class Playlist < ActiveRecord::Base
         self.display_playlist_as_table
     end
 
+    def current_artist
+        SongsArtists.all.each do |sa|
+            if sa.song.title == Song.current
+                return sa.artist
+            end
+        end
+    end
+
     def display_options
         prompt = TTY::Prompt.new
         selection = prompt.select('Select command') do |menu|

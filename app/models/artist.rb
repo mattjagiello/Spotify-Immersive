@@ -1,4 +1,3 @@
-require 'rubygems'
 require 'wikipedia'
 require 'active_record'
 require 'pry'
@@ -19,7 +18,7 @@ big_data = []
 big_data << page.text.split(".")
 command = "\n"
 index = 0
-puts "press enter"
+puts "Press enter or type 'leave' to go back:"
 while (command != "leave")
     command = gets
     case command
@@ -31,5 +30,4 @@ while (command != "leave")
     end
 end
 end
-binding.pry
 end
