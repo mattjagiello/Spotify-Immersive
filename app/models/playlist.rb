@@ -133,7 +133,9 @@ class Playlist < ActiveRecord::Base
         when 4
             input = prompt.ask('Enter new name for playlist:')
             self.rename_playlist(input)
+            puts "\n"
             puts "renamed playlist to #{self.name}"
+            puts "\n"
         when 5
             user = nil
             User.all.each do |u|
