@@ -54,7 +54,7 @@ def self.login
         when 2
             self.playlist_pick
         when 3
-            self.view_playlists_as_table
+            Formatador.display_table(self.view_playlists)
             name = prompt.ask ("Enter a playlist name to delete.") do |q|
                 q.required true
                 if name == "Back"
@@ -106,7 +106,7 @@ def self.login
     def view_playlists_as_table
         Formatador.display_table(self.view_playlists)
         prompt = TTY::Prompt.new
-        input = prompt.ask("Enter playlist number to delete, press '0' to go back or '-1' to exit.")
+        input = prompt.ask("Enter playlist number to select, press '0' to go back or '-1' to exit.")
         if input == "0"
             self.playlist_options
         elsif input == "-1"
