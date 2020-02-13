@@ -30,10 +30,15 @@ screenshot here
 
 ## Interesting Notes
 - Describe something you struggled to build, and show us how you ultimately implemented it in your code.
+
 The play_song method was difficult to wrap our mind around. We had to first research how to even operate Spotify from the CLI. Luckily, there was a brew online called ‘shpotify’ that was designed specifically for that task. Once downloaded all we had to do was window(command) in our ruby code and voila!
+
 - Discuss 3 things you learned in the process of working on this project.
+
 While working on this project we found a plethora of gems on the web. This was our first time requiring and installing them without help from a instructor or lab. 
+----------------------------------------------------------------------
 Github has been a looming shadow of hesitance lingering in the back of my consciousness since day one. While working on this project with a partner we learned how to navigate github at a pretty decent rate. Our understanding of github is still somewhat cloudy but thanks to this project it is starting to clear up.
+----------------------------------------------------------------------
 Project planning was the quintessential objective for this project. Together we learned how to set up object associations through ActiveRecord. Prioritizing was also a valuable aspect of our process which I feel we did well. Setting stretch goals that we vowed not to start until our program was running in at least its most child but functioning state.
 - Address, if anything, what you would change or add to what you have today?
 We really wanted to add a method that returned a list of tour dates for artists passed in. The only problem was Songkick takes up to 7 days to respond to a request for a key. We applied but the key came after the deadline has already passed.
