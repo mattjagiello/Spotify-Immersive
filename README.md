@@ -37,13 +37,13 @@ A CLI based app showcasing Spotify, Wikipedia, and Ticketmaster interactivity by
 
 ![View artist information](https://github.com/mattjagiello/ruby-project-guidelines-austin-web-012720/blob/master/images/view_artist_info.png)
 
-- After song playback has started, able to view artist's next tour date information pulled from Ticketmaster API.
+- After song playback has started, able to view artist's next tour date information and a link to the event page pulled from Ticketmaster API.
 
 ![View next tour date information](https://github.com/mattjagiello/ruby-project-guidelines-austin-web-012720/blob/master/images/view_artist_tour_date.png)
 
 ## Interesting Notes
 
-The play_song method was difficult to wrap our mind around. Would we be able to play music back in the CLI? Did we have to open up a browser with the song URI? After some initial research, we were able to find a [homebrew](https://brew.sh/) package called [‘shpotify’](https://github.com/hnarayanan/shpotify) that was designed specifically for Spotify interaction. Once we downloaded and set it up, all we had to do was add `window(command)` in our Ruby code and we achieved playback in the Spotify desktop app! :metal:
+The play_song method was difficult to wrap our heads around. Would we be able to play music back in the CLI? Did we have to open up a browser with the song URI? After some initial research, we were able to find a [homebrew](https://brew.sh/) package called [‘shpotify’](https://github.com/hnarayanan/shpotify) that was designed specifically for Spotify interaction. Once we downloaded and set it up, all we had to do was add `window(command)` in our Ruby code and we achieved playback in the Spotify desktop app! :metal:
 
 ### What We Learned
 
@@ -55,7 +55,7 @@ The play_song method was difficult to wrap our mind around. Would we be able to 
 
 ### What We Would Change
 
-We really wanted to complete all of our stretch goals and add a method that returned a list of tour dates for a requested artist. Our preferred website to do this, Songkick, takes up to 7 days to respond to a request for a key -- we applied for one but the key did not arrive by the time of the project deadline. We ended up using Ticketmaster to pull upcoming tour dates and are trying to squeeze it in as a final feature as of this writing.
+The most glaring change we would make would be modifying the menu navigation in our program. When planning the project, we didn't fully take into account the user experience when clicking through the program. Additionally, we divided the work of building the methods and class functionality without setting a standard for how user navigation would work. The result of these decisions was a somewhat confusing experience using menu options such as going back to previous menus or stopping the execution of certain methods. Ultimately the program seems to be mostly intuitive as our beta testers and colleagues were able to use the app without great difficulty or assistance.
 
 ### Code Highlight
 ```
