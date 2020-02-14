@@ -37,7 +37,7 @@ A CLI based app showcasing Spotify, Wikipedia, and Ticketmaster interactivity by
 
 ![View artist information](https://github.com/mattjagiello/ruby-project-guidelines-austin-web-012720/blob/master/images/view_artist_info.png)
 
-- After song playback has started, able to view artist's next tour date information and a link to the event page pulled from Ticketmaster API.
+- After song playback has started, able to view artist's next tour date information pulled from Ticketmaster API.
 
 ![View next tour date information](https://github.com/mattjagiello/ruby-project-guidelines-austin-web-012720/blob/master/images/view_artist_tour_date.png)
 
